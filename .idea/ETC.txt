@@ -1,3 +1,19 @@
+//팝업 윈도우 제어
+        String parentHandle = driver.getWindowHandle(); // 현재 윈도우를 부모핸들로 지정
+        driver.findElement(By.xpath("//*[@id=\"delivery_address_container\"]/td/div[1]/button")).click(); //주소찾기
+        for (String winHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(winHandle); // 신규 윈도우를 찾으면 해당 윈도우로 핸들 스위칭
+        }
+        //테스트 스크립트
+	
+        driver.switchTo().window(parentHandle); // 원래 윈도우 창으로 핸들 스위칭
+        Thread.sleep(1000);
+
+//텍스트 가져와서 입력하기
+        driver.findElement(By.xpath("//*[@id=\"milage_prc\"]")).clear();
+        String a = driver.findElement(By.xpath("//*[@id=\"total_order_price_pay\"]")).getText();
+        driver.findElement(By.xpath("//*[@id=\"milage_prc\"]")).sendKeys(a);
+
 //alert check
  if ("아이디를 입력해주세요.".equals(driver.switchTo().alert().getText())) {
         System.out.println("Success");
