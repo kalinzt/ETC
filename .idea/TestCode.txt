@@ -1,3 +1,23 @@
+//보유 포인트 전액 사용하기
+        //getText로 받은 문자열을 정수로 변환 및 천단위 콤마 제거
+        driver.findElement(By.xpath("//*[@id=\"milage_prc\"]")).clear();
+        
+        String a = driver.findElement(By.xpath("//*[@id=\"ordFrm\"]/div[1]/div[2]/div/dl[2]/dt[1]/p/span")).getText();
+        a = a.replaceAll(",", "");
+        int ordFrm = Integer.parseInt(a);
+        //System.out.println(ordFrm);
+
+        String b = driver.findElement(By.xpath("//*[@id=\"total_order_price_pay\"]")).getText();
+        b = b.replaceAll(",", "");
+        int totalPay = Integer.parseInt(b);
+        //System.out.println(totalPay);
+
+        if (ordFrm > totalPay) {
+            driver.findElement(By.xpath("//*[@id=\"milage_prc\"]")).sendKeys(b);
+        } else {
+            driver.findElement(By.xpath("//*[@id=\"milage_prc\"]")).sendKeys(a);
+        }
+
 //팝업 윈도우 제어
         String parentHandle = driver.getWindowHandle(); // 현재 윈도우를 부모핸들로 지정
         driver.findElement(By.xpath("//*[@id=\"delivery_address_container\"]/td/div[1]/button")).click(); //주소찾기
@@ -14,7 +34,7 @@
         String a = driver.findElement(By.xpath("//*[@id=\"total_order_price_pay\"]")).getText();
         driver.findElement(By.xpath("//*[@id=\"milage_prc\"]")).sendKeys(a);
 
-//alert check
+//alert checker
  if ("아이디를 입력해주세요.".equals(driver.switchTo().alert().getText())) {
         System.out.println("Success");
         assertTrue(true);
@@ -24,7 +44,7 @@
         assertTrue(false);
      }
 	 
-// text check
+// text checker
          if ("로그인".equals(driver.findElement(By.xpath(".//*[@id='login_area']/form/div/div/div[2]/input")).getText())) {
             System.out.println("[TC_117] success");
             assertTrue(true);
@@ -34,16 +54,14 @@
             assertTrue(false);
 			}
 // gettext
-
     WebElement aa = driver.findElement(By.xpath(""));
              System.out.println(aa.getText());
-//getalert
 
+//getalert
          System.out.println("Alert text is: " +driver.switchTo().alert().getText());
          System.out.println(driver.switchTo().alert().getText());
 		 
 //titlecheck
-
  if ("Oshopping Smart - CJmall1".equals(driver.getTitle())) {
     	System.out.println(driver.getTitle());
         assertTrue(true);
@@ -54,7 +72,6 @@
      }
 
 //Popup
-
  WebElement searchButton = driver.findElement(By.xpath(".//*[@id='base_layer']/div/div"));
 	    if(searchButton.isDisplayed())
 	    {
