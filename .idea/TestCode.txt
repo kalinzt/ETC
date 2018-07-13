@@ -43,6 +43,16 @@
          System.out.println("Failure");
         assertTrue(false);
      }
+     
+// text check
+        if ("주문이 정상적으로 완료되었습니다!".equals(driver.findElement(By.xpath("//*[@id=\"orderFinish\"]/div/h2")).getText())) {
+        System.out.println("PASS");
+        assertTrue(true);
+        return;
+        } else {
+        System.out.println("FAIL");
+        assertTrue(false);
+        }
 	 
 // text checker
          if ("로그인".equals(driver.findElement(By.xpath(".//*[@id='login_area']/form/div/div/div[2]/input")).getText())) {
